@@ -2696,3 +2696,41 @@ fieldset {
     animation: none;
   }
 }
+
+/* ---------- stats band ---------- */
+.stats {
+  border-block: 1px solid var(--line);
+}
+.stats__row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stats__row li {
+  display: grid;
+  gap: 6px;
+  padding: clamp(26px, 3.4vw, 48px) clamp(12px, 2vw, 28px);
+  border-right: 1px solid var(--line);
+}
+.stats__row li:last-child {
+  border-right: 0;
+}
+.stats__n {
+  font-size: clamp(3.2rem, 7vw, 7rem);
+  font-variant-numeric: tabular-nums;
+}
+.stats__l {
+  font-size: 0.8rem;
+  color: var(--mute);
+  text-transform: uppercase;
+}
+@media (max-width: 900px) {
+  .stats__row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stats__row li:nth-child(2) {
+    border-right: 0;
+  }
+  .stats__row li:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--line);
+  }
+}

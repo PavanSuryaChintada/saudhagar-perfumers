@@ -3,6 +3,7 @@ import ProductRow from '../sections/ProductRow'
 import Signature from '../sections/Signature'
 import HorizontalCollection from '../sections/HorizontalCollection'
 import About from '../sections/About'
+import Stats from '../sections/Stats'
 import Philosophy from '../sections/Philosophy'
 import MaterialMemory from '../sections/MaterialMemory'
 import Ritual from '../sections/Ritual'
@@ -29,6 +30,7 @@ export default function Home() {
       <Signature />
       <HorizontalCollection />
       <About />
+      <Stats />
       <Philosophy />
       <MaterialMemory />
       <FamilyStack />

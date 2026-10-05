@@ -2277,3 +2277,55 @@ fieldset {
   color: #000;
   font-size: 18px;
 }
+
+/* ---------- velocity marquee ---------- */
+.vmarq {
+  overflow: hidden;
+  padding-block: clamp(18px, 2.4vw, 30px);
+  margin-top: clamp(32px, 4vw, 56px);
+  border-block: 1px solid var(--line);
+}
+.vmarq__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.vmarq__set {
+  display: flex;
+}
+.vmarq__item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+  padding-right: clamp(20px, 3vw, 44px);
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2rem, 5.4vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.vmarq__item--outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold);
+}
+.vmarq__star {
+  width: 0.32em;
+  height: 0.32em;
+  color: var(--gold);
+}
+.vmarq--gold {
+  background: var(--gold);
+  border: 0;
+  margin-top: 0;
+}
+.vmarq--gold .vmarq__item,
+.vmarq--gold .vmarq__star {
+  color: #000;
+}
+.vmarq--gold .vmarq__item--outline {
+  color: transparent;
+  -webkit-text-stroke-color: #000;
+}

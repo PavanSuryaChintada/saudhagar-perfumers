@@ -1,0 +1,34 @@
+import HeroTraces from '../sections/HeroTraces'
+import ProductRow from '../sections/ProductRow'
+import Signature from '../sections/Signature'
+import About from '../sections/About'
+import Philosophy from '../sections/Philosophy'
+import MaterialMemory from '../sections/MaterialMemory'
+import Ritual from '../sections/Ritual'
+import NotesJourney from '../sections/NotesJourney'
+import ScentArchive from '../sections/ScentArchive'
+import Finder from '../sections/Finder'
+import Reviews from '../sections/Reviews'
+import { PRODUCTS, findProduct } from '../data/products'
+
+const NEW_ARRIVALS = ['dahn-al-oud', 'shamama-attar', 'kesar-amber', 'barish'].map(findProduct)
+const BESTSELLERS = PRODUCTS.filter((p) => p.bestseller).slice(0, 4)
+
+export default function Home() {
+  return (
+    <>
+      <HeroTraces />
+      <ProductRow title="New arrivals" products={NEW_ARRIVALS} link="/shop?sort=new" />
+      <Signature />
+      <About />
+      <Philosophy />
+      <MaterialMemory />
+      <Ritual />
+      <NotesJourney />
+      <ProductRow title="Bestsellers" products={BESTSELLERS} link="/shop" linkText="View catalog" />
+      <ScentArchive />
+      <Finder />
+      <Reviews />
+    </>
+  )
+}

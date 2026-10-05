@@ -6,6 +6,7 @@ import ScentArchive from '../sections/ScentArchive'
 import Residue from '../sections/Residue'
 import MaterialMemory from '../sections/MaterialMemory'
 import Ritual from '../sections/Ritual'
+import FamilyStack from '../sections/FamilyStack'
 import Philosophy from '../sections/Philosophy'
 import { PRODUCTS, findProduct } from '../data/products'
 
@@ -25,6 +26,7 @@ export default function Home() {
       <ScentArchive />
       <Residue />
       <MaterialMemory />
+      <FamilyStack />
       <Ritual />
       <Philosophy />
       <ProductRow title="Popular products" products={POPULAR} link="/shop" linkText="View catalog" />

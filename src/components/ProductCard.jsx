@@ -28,17 +28,19 @@ export default function ProductCard({ product: p, index = 0, large = false, labe
         </span>
       </Link>
       <div className="pc__row">
-        <h3 className="pc__name">
-          <Link to={`/product/${p.slug}`}>
-            {kicker}
-            {p.name}
-          </Link>
-        </h3>
+        <div className="pc__text">
+          <h3 className="pc__name">
+            <Link to={`/product/${p.slug}`}>
+              {kicker && <span className="pc__type">{kicker.replace(' — ', '')}</span>}
+              {p.name}
+            </Link>
+          </h3>
+          <p className="pc__price">{formatPrice(size.price)}</p>
+        </div>
         <button className="pc__quick" onClick={() => add(p.slug, size.ml)} aria-label={`Quick add ${p.name}, ${size.ml} ml`}>
           Quick add <span aria-hidden="true">+</span>
         </button>
       </div>
-      <p className="pc__price">{formatPrice(size.price)}</p>
     </motion.article>
   )
 }

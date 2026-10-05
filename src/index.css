@@ -2438,38 +2438,6 @@ fieldset {
   border-top: 1px solid var(--line);
 }
 
-/* ---------- scroll-driven word bands ---------- */
-.swords {
-  overflow: hidden;
-  padding-block: clamp(28px, 4vw, 56px);
-  background: var(--ink);
-  border-block: 1px solid var(--line);
-}
-.swords__row {
-  font-family: var(--numeral);
-  font-size: clamp(3.4rem, 11vw, 11rem);
-  line-height: 0.95;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--ivory);
-  will-change: transform;
-}
-.swords__row--outline {
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(236, 230, 218, 0.4);
-}
-.swords--gold {
-  background: var(--gold);
-  border: 0;
-}
-.swords--gold .swords__row {
-  color: var(--ink);
-}
-.swords--gold .swords__row--outline {
-  color: transparent;
-  -webkit-text-stroke-color: var(--ink);
-}
-
 /* ---------- stacked family cards ---------- */
 .fstack__slot {
   position: sticky;
@@ -2708,17 +2676,6 @@ body {
   text-transform: none;
   letter-spacing: 0;
 }
-.swords__row {
-  font-family: var(--display);
-  font-weight: 500;
-  font-variation-settings: 'opsz' 96;
-  letter-spacing: -0.02em;
-  font-size: clamp(3rem, 9vw, 9rem);
-}
-.swords__row--outline {
-  font-style: italic;
-  font-weight: 400;
-}
 .edit__word {
   font-family: var(--display);
   font-weight: 500;
@@ -2740,4 +2697,346 @@ body {
 }
 .spec th {
   letter-spacing: 0.08em;
+}
+
+/* ==========================================================================
+   Detail colour: oxblood maroon — velvet, rose, aged oud.
+   Gold stays the action colour; maroon marks labels, badges and one velvet room.
+   ========================================================================== */
+:root {
+  --maroon: #6b1d2a;
+  --maroon-deep: #2b0c12;
+  --maroon-velvet: #3d1119;
+  --wine: #c6687a; /* maroon lifted for small text on black (AA at 14px+) */
+}
+::selection {
+  background: var(--maroon);
+  color: var(--ivory);
+}
+
+/* ---------- hierarchy: one scale, used everywhere ---------- */
+/* 1 display (hero, page titles)  2 section title  3 label  4 lede  5 body/meta */
+.stitle {
+  font-size: clamp(2rem, 3.6vw, 3.5rem);
+  line-height: 1;
+  color: var(--ivory);
+}
+.label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--wine);
+}
+.label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: currentColor;
+}
+.label--center {
+  justify-content: center;
+}
+.label--center::before {
+  display: none;
+}
+.lede,
+.shead__note {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--mute);
+  max-width: 42ch;
+}
+.shead {
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+.section {
+  padding-block: clamp(72px, 9vw, 140px);
+}
+
+/* product tiles: name leads, price follows, actions recede */
+.pc__name {
+  font-size: 1.1rem;
+  line-height: 1.2;
+}
+.pc__row {
+  margin-top: 14px;
+}
+.pc__price {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: var(--mute);
+  font-weight: 400;
+}
+.pc__quick {
+  color: var(--mute);
+  font-size: 0.66rem;
+  transition: color 0.3s;
+}
+.pc:hover .pc__quick,
+.pc__quick:hover {
+  color: var(--gold);
+}
+.pc__flag {
+  background: var(--maroon);
+  color: var(--ivory);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.6rem;
+  padding: 4px 9px;
+}
+.wish.is-on {
+  color: var(--wine);
+}
+.wish.is-on svg {
+  fill: var(--wine);
+}
+
+/* maroon details across sections */
+.sig__num {
+  color: var(--wine);
+  border-bottom-color: rgba(198, 104, 122, 0.35);
+}
+.arc__bar {
+  background: var(--maroon);
+  color: var(--ivory);
+  letter-spacing: 0.2em;
+}
+.arc__row:hover,
+.arc__row.is-active {
+  border-color: var(--wine);
+}
+.arc__row.is-active .arc__n,
+.arc__row.is-active .arc__name {
+  color: var(--wine);
+}
+.fstack__num,
+.hcol__num,
+.hero__tabtext span {
+  color: var(--wine);
+}
+.hd__link::after {
+  background: var(--wine);
+}
+.hero__of,
+.res__sub {
+  color: var(--wine);
+}
+.pager .is-active {
+  color: var(--wine);
+}
+
+/* the velvet room: ritual sits on deep maroon */
+.rit {
+  background: radial-gradient(120% 80% at 20% 0%, var(--maroon-velvet), var(--maroon-deep) 70%);
+  border: 0;
+}
+.rit .rit__head p,
+.rit .rit__step p {
+  color: rgba(236, 230, 218, 0.68);
+}
+
+/* ---------- anatomy of a scent ---------- */
+.anat {
+  background: var(--onyx);
+  border-top: 1px solid var(--line);
+  padding-block: clamp(72px, 9vw, 140px);
+}
+.anat__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(28px, 6vw, 96px);
+  align-items: start;
+}
+.anat__sticky {
+  position: sticky;
+  top: calc(var(--hd) + 24px);
+}
+.anat__img {
+  aspect-ratio: 4 / 5;
+  max-height: calc(100svh - var(--hd) - 90px);
+  overflow: hidden;
+  background: var(--panel);
+}
+.anat__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--grade);
+}
+.anat__caption {
+  margin-top: 12px;
+  font-size: 0.78rem;
+  color: var(--mute);
+  letter-spacing: 0.06em;
+}
+.anat__title {
+  margin-bottom: 18px;
+}
+.anat__layers {
+  position: relative;
+  margin: clamp(36px, 5vw, 56px) 0 40px;
+  padding-left: 30px;
+}
+.anat__track {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--line-strong);
+}
+.anat__track span {
+  position: absolute;
+  inset: 0;
+  background: var(--wine);
+  transform-origin: top;
+}
+.anat__layer {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 8px;
+  padding-bottom: clamp(48px, 9vh, 96px);
+  opacity: 0.32;
+  transition: opacity 0.6s var(--ease);
+}
+.anat__layer:last-child {
+  padding-bottom: 0;
+}
+.anat__layer.is-on {
+  opacity: 1;
+}
+.anat__num {
+  font-family: var(--numeral);
+  font-size: 1rem;
+  color: var(--wine);
+  padding-top: 8px;
+}
+.anat__layer h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+  line-height: 1.1;
+}
+.anat__when {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mute);
+  margin: 6px 0 12px;
+}
+.anat__notes {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.anat__text {
+  font-size: 0.92rem;
+  color: var(--mute);
+  max-width: 40ch;
+}
+
+/* ==========================================================================
+   Mobile pass
+   ========================================================================== */
+.pill {
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .anat__inner {
+    grid-template-columns: 1fr;
+  }
+  .anat__sticky {
+    position: static;
+  }
+  .anat__img {
+    aspect-ratio: 4 / 3;
+    max-height: none;
+  }
+  .anat__layer {
+    padding-bottom: 44px;
+    opacity: 1;
+  }
+  .phil__img {
+    width: 100% !important;
+  }
+  .hcol__intro {
+    width: 70vw;
+  }
+  .hcol__intro .display {
+    font-size: clamp(2.2rem, 10vw, 3.2rem);
+  }
+  .hcol__item {
+    width: 70vw;
+  }
+  .hcol__img {
+    max-height: 52svh;
+  }
+  .shead:not(.shead--top) {
+    align-items: flex-end;
+  }
+  .shead--top {
+    align-items: flex-start;
+  }
+  .stitle {
+    font-size: clamp(1.9rem, 8vw, 2.6rem);
+  }
+  .about__lead {
+    font-size: 1.6rem;
+  }
+}
+@media (max-width: 560px) {
+  .pc__row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .pc__name {
+    font-size: 1rem;
+  }
+  .pc__quick {
+    order: 3;
+    margin-top: 6px;
+    color: var(--gold);
+  }
+  .edit__word {
+    font-size: clamp(3.4rem, 18vw, 5rem);
+  }
+  .res__sub {
+    font-size: 1.6rem;
+  }
+  .fstack__body .display {
+    font-size: 2.2rem;
+  }
+  .hero__card h2 {
+    font-size: 1.6rem;
+  }
+  .label {
+    letter-spacing: 0.18em;
+  }
+}
+
+/* product tile text block: type label, name, price */
+.pc__row {
+  align-items: flex-start;
+}
+.pc__type {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--wine);
+}
+.pc__quick {
+  margin-top: 2px;
 }

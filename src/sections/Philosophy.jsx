@@ -13,7 +13,7 @@ export default function Philosophy() {
   return (
     <section className="phil section" ref={ref}>
       <div className="container">
-        <FadeIn as="p" className="phil__kicker">
+        <FadeIn as="p" className="label label--center">
           Brand philosophy
         </FadeIn>
         <div className="phil__stack">

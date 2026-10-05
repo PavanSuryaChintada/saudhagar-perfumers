@@ -6,7 +6,7 @@ export default function MaterialMemory() {
   return (
     <section className="mat section">
       <div className="container">
-        <FadeIn as="p" className="mat__kicker">
+        <FadeIn as="p" className="label label--center">
           Material memory
         </FadeIn>
         <div className="mat__grid">

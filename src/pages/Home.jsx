@@ -1,6 +1,7 @@
 import HeroTraces from '../sections/HeroTraces'
 import ProductRow from '../sections/ProductRow'
 import Signature from '../sections/Signature'
+import HorizontalCollection from '../sections/HorizontalCollection'
 import About from '../sections/About'
 import Philosophy from '../sections/Philosophy'
 import MaterialMemory from '../sections/MaterialMemory'
@@ -25,6 +26,7 @@ export default function Home() {
       <VelocityMarquee items={MATERIALS} />
       <ProductRow title="New arrivals" products={NEW_ARRIVALS} link="/shop?sort=new" />
       <Signature />
+      <HorizontalCollection />
       <About />
       <Philosophy />
       <MaterialMemory />

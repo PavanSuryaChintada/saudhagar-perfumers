@@ -6,6 +6,7 @@ import Footer from './components/Footer'
 import SearchOverlay from './components/SearchOverlay'
 import Preloader from './components/Preloader'
 import Toast from './components/Toast'
+import ScrollProgress from './components/ScrollProgress'
 import { ease } from './components/Reveal'
 import useLenis, { getLenis, scrollToTop } from './hooks/useLenis'
 import Home from './pages/Home'
@@ -54,6 +55,7 @@ export default function App() {
         Skip to content
       </a>
       <Preloader />
+      <ScrollProgress />
       <Header onSearch={() => setSearch(true)} />
       <AnimatePresence mode="wait" onExitComplete={() => !location.hash && scrollToTop()}>
         <Routes location={location} key={location.pathname}>

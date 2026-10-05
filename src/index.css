@@ -2252,3 +2252,13 @@ fieldset {
     margin: 10px 0;
   }
 }
+
+/* ---------- scroll progress ---------- */
+.sprogress {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 2px;
+  z-index: 70;
+  background: var(--gold);
+  transform-origin: 0 50%;
+}

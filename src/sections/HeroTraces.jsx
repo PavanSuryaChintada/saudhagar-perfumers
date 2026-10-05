@@ -53,7 +53,7 @@ export default function HeroTraces() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '16%'])
   const titleY = useTransform(scrollYProgress, [0, 1], ['0%', '-40%'])
-  const spacing = useTransform(scrollYProgress, [0, 1], ['-0.045em', '0.04em'])
+  const spacing = useTransform(scrollYProgress, [0, 1], ['0em', '0.08em'])
   const titleFade = useTransform(scrollYProgress, [0, 0.8], [1, 0.1])
   const uiY = useTransform(scrollYProgress, [0, 1], ['0%', '-35%'])
 

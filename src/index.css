@@ -204,7 +204,7 @@ fieldset {
   font-weight: 400;
   overflow: hidden;
   isolation: isolate;
-  transition: color 0.4s var(--ease);
+  transition: color 0.4s var(--ease), transform 0.45s var(--ease);
 }
 .pill::before {
   content: '';

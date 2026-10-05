@@ -11,6 +11,7 @@ import Wordmark from './components/Wordmark'
 import Cursor from './components/Cursor'
 import { ease } from './components/Reveal'
 import useLenis, { getLenis, scrollToTop } from './hooks/useLenis'
+import useMagnetic from './hooks/useMagnetic'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
 import Product from './pages/Product'
@@ -57,6 +58,7 @@ function RouteCurtain() {
 
 export default function App() {
   useLenis()
+  useMagnetic()
   const location = useLocation()
   // the first page is revealed by the preloader, so the curtain waits for a real navigation
   const [firstPath] = useState(location.pathname)

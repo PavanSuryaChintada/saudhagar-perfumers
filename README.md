@@ -21,3 +21,14 @@ npm run build
 Checkout is not wired to a payment provider yet.
 
 Brand: Cinzel (wordmark), Cormorant Garamond (editorial headings), Poppins (body, matches the logo tagline). Gold `#F7D98A`, antique gold `#C9A15A`, black `#000`.
+
+## Deploy to Vercel
+
+The repo is ready to import as-is: Vercel detects Vite, runs `npm ci` and `npm run build`, and serves `dist/`.
+`vercel.json` rewrites every route to `index.html` so client-side routes such as `/product/oud-shahi` work on refresh,
+and sets long cache headers for hashed assets and images.
+
+1. vercel.com → Add New → Project → import `saudhagar-perfumers`.
+2. Leave the detected settings and press Deploy.
+
+Or from the terminal: `npx vercel` (preview) and `npx vercel --prod`.

@@ -10,7 +10,7 @@ import FamilyStack from '../sections/FamilyStack'
 import Philosophy from '../sections/Philosophy'
 import TheEdit from '../sections/TheEdit'
 import HorizontalCollection from '../sections/HorizontalCollection'
-import ScrollWords from '../components/ScrollWords'
+import ScentAnatomy from '../sections/ScentAnatomy'
 import { PRODUCTS, findProduct } from '../data/products'
 
 // SYLVEN section order, with scroll-driven passages between the chapters.
@@ -21,7 +21,6 @@ export default function Home() {
   return (
     <>
       <HeroTraces />
-      <ScrollWords top={['Oud', 'Attar', 'Saffron', 'Rose']} bottom={['Sandalwood', 'Musk', 'Amber', 'Vetiver']} />
       <ProductRow title="New arrivals" products={NEW_ARRIVALS} link="/shop?sort=new" />
       <Signature />
       <About />
@@ -34,11 +33,7 @@ export default function Home() {
       <MaterialMemory />
       <FamilyStack />
       <Ritual />
-      <ScrollWords
-        top={['Distilled in copper', 'Rested in glass']}
-        bottom={['Blended by hand', 'Small batches']}
-        className="swords--gold"
-      />
+      <ScentAnatomy />
       <Philosophy />
       <HorizontalCollection />
     </>

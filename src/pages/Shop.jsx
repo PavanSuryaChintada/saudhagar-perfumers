@@ -63,7 +63,7 @@ export default function Shop() {
                 transition={{ duration: 1.1, delay: 0.1 + i * 0.12, ease }}
               >
                 {w}
-              </motion.span>{' '}
+              </motion.span>
             </span>
           ))}
         </h1>

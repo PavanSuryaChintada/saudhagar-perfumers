@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { Suspense, lazy, useCallback, useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion'
 import Header from './components/Header'
@@ -13,12 +13,14 @@ import { ease } from './components/Reveal'
 import useLenis, { getLenis, scrollToTop } from './hooks/useLenis'
 import useMagnetic from './hooks/useMagnetic'
 import Home from './pages/Home'
-import Shop from './pages/Shop'
-import Product from './pages/Product'
 import NotFound from './pages/NotFound'
-import Bag from './pages/Bag'
-import Checkout from './pages/Checkout'
-import Wishlist from './pages/Wishlist'
+
+// Home ships in the main bundle; the other pages load on first visit.
+const Shop = lazy(() => import('./pages/Shop'))
+const Product = lazy(() => import('./pages/Product'))
+const Bag = lazy(() => import('./pages/Bag'))
+const Checkout = lazy(() => import('./pages/Checkout'))
+const Wishlist = lazy(() => import('./pages/Wishlist'))
 
 function Page({ children }) {
   return (
@@ -28,7 +30,7 @@ function Page({ children }) {
       animate={{ opacity: 1, transition: { duration: 0.6, delay: 0.15 } }}
       exit={{ opacity: 0, transition: { duration: 0.55 } }}
     >
-      {children}
+      <Suspense fallback={<div className="page-loading" />}>{children}</Suspense>
     </motion.main>
   )
 }

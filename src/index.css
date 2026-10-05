@@ -2734,3 +2734,6 @@ fieldset {
     border-bottom: 1px solid var(--line);
   }
 }
+.page-loading {
+  min-height: 100svh;
+}

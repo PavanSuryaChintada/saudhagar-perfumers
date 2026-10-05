@@ -1,12 +1,50 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { motion, useReducedMotion } from 'framer-motion'
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from 'framer-motion'
 import { ease } from '../components/Reveal'
 import ProductRow from '../sections/ProductRow'
 import { useCart } from '../context/CartContext'
 import { PRODUCTS, findProduct, formatPrice } from '../data/products'
 import NotFound from './NotFound'
 import WishButton from '../components/WishButton'
+
+// Scent profile on a 1–5 scale, derived from catalogue fields so every product has one.
+const STRENGTH = { 'Skin-close': 2, Soft: 2, Moderate: 3, Strong: 5, 'Varies by scent': 3 }
+const profileOf = (p) => [
+  ['Projection', STRENGTH[p.sillage] ?? 3],
+  ['Longevity', /all day|ten/i.test(p.longevity) ? 5 : /eight/i.test(p.longevity) ? 4 : 3],
+  ['Warmth', { woody: 4, amber: 5, floral: 3, fresh: 1 }[p.family]],
+  ['Sweetness', { amber: 4, floral: 3, woody: 2, fresh: 1 }[p.family]],
+]
+
+function Profile({ p }) {
+  const ref = useRef(null)
+  const seen = useInView(ref, { once: true, margin: '-10% 0px' })
+  return (
+    <div className="profile" ref={ref}>
+      <p className="profile__title">Scent profile</p>
+      {profileOf(p).map(([label, v], i) => (
+        <div className="profile__row" key={label}>
+          <span>{label}</span>
+          <span className="profile__track" role="img" aria-label={`${label} ${v} out of 5`}>
+            <motion.span
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: seen ? v / 5 : 0 }}
+              transition={{ duration: 1.1, delay: 0.15 + i * 0.1, ease }}
+            />
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 const BEST_FOR = {
   woody: 'Best for evenings, cool air and quiet interiors.',
@@ -28,6 +66,11 @@ function ProductView({ p }) {
   const [ml, setMl] = useState(p.sizes[0].ml)
   const [qty, setQty] = useState(1)
   const size = p.sizes.find((s) => s.ml === ml)
+  const buyRef = useRef(null)
+  const buyVisible = useInView(buyRef)
+  const { scrollY } = useScroll()
+  const [scrolled, setScrolled] = useState(false)
+  useMotionValueEvent(scrollY, 'change', (y) => setScrolled(y > 200))
   const related = PRODUCTS.filter((x) => x.slug !== p.slug)
     .sort((a, b) => Number(b.family === p.family) - Number(a.family === p.family))
     .slice(0, 4)
@@ -107,7 +150,7 @@ function ProductView({ p }) {
             </table>
 
             <p className="pdp__price">{formatPrice(size.price * qty)}</p>
-            <div className="pdp__buy">
+            <div className="pdp__buy" ref={buyRef}>
               <div className="qty">
                 <button onClick={() => setQty(Math.max(1, qty - 1))} aria-label="Decrease quantity">
                   −
@@ -125,11 +168,35 @@ function ProductView({ p }) {
             <p className="pdp__assure">
               Rated {p.rating} from {p.reviews} reviews. Free shipping over ₹2,999.
             </p>
+            <Profile p={p} />
           </motion.div>
         </div>
       </div>
 
       <ProductRow title="You may also like" products={related} link="/shop" linkText="View all" />
+
+      <AnimatePresence>
+        {!buyVisible && scrolled && (
+          <motion.div
+            className="sbar"
+            initial={{ y: '110%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '110%' }}
+            transition={{ duration: 0.5, ease }}
+          >
+            <img src={p.image} alt="" />
+            <div className="sbar__info">
+              <strong>{p.name}</strong>
+              <span>
+                {ml} ml — {formatPrice(size.price * qty)}
+              </span>
+            </div>
+            <button className="pill pill--sm" onClick={() => add(p.slug, ml, qty)}>
+              Add to bag
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

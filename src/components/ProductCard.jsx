@@ -19,7 +19,7 @@ export default function ProductCard({ product: p, index = 0, large = false, labe
       viewport={{ once: true, margin: '-5% 0px' }}
       transition={{ duration: 0.9, delay: (index % 4) * 0.08, ease }}
     >
-      <Link to={`/product/${p.slug}`} className="pc__media" data-cursor="View" aria-label={`${p.name}, ${p.type}`}>
+      <Link to={`/product/${p.slug}`} className="pc__media" aria-label={`${p.name}, ${p.type}`}>
         <img src={p.image} alt="" loading="lazy" />
         {p.isNew && <span className="pc__flag">New</span>}
         <WishButton slug={p.slug} name={p.name} className="pc__wish" />

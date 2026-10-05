@@ -6,12 +6,9 @@ import Footer from './components/Footer'
 import SearchOverlay from './components/SearchOverlay'
 import Preloader from './components/Preloader'
 import Toast from './components/Toast'
-import ScrollProgress from './components/ScrollProgress'
 import Wordmark from './components/Wordmark'
-import Cursor from './components/Cursor'
 import { ease } from './components/Reveal'
 import useLenis, { getLenis, scrollToTop } from './hooks/useLenis'
-import useMagnetic from './hooks/useMagnetic'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
@@ -61,7 +58,6 @@ function RouteCurtain() {
 
 export default function App() {
   useLenis()
-  useMagnetic()
   const location = useLocation()
   // the first page is revealed by the preloader, so the curtain waits for a real navigation
   const [firstPath] = useState(location.pathname)
@@ -89,7 +85,6 @@ export default function App() {
         Skip to content
       </a>
       <Preloader />
-      <ScrollProgress />
       {moved && <RouteCurtain key={location.pathname} />}
       <Header onSearch={() => setSearch(true)} />
       <AnimatePresence mode="wait" onExitComplete={() => !location.hash && scrollToTop()}>
@@ -155,7 +150,6 @@ export default function App() {
       <Footer />
       <SearchOverlay open={search} onClose={closeSearch} />
       <Toast />
-      <Cursor />
     </MotionConfig>
   )
 }

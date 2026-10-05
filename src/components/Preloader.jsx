@@ -40,7 +40,7 @@ export default function Preloader() {
   const counter = useRef(null)
   const liquidY = useTransform(fill, [0, 1], [BODY.bottom, BODY.top])
 
-  // Real progress: hero photo + web fonts, never faster than a minimum, never slower than 7s.
+  // Real progress: hero photo + web fonts, never faster than a minimum, never slower than about 4.5s.
   useEffect(() => {
     if (reduceMotion) {
       finishIntro()
@@ -57,7 +57,7 @@ export default function Preloader() {
     const tick = (now) => {
       const elapsed = now - start
       const byTime = Math.min(1, elapsed / minMs)
-      const byLoad = elapsed > 7000 ? 1 : (loaded / tasks.length) * 0.9 + 0.1
+      const byLoad = elapsed > 4500 ? 1 : (loaded / tasks.length) * 0.9 + 0.1
       const goal = Math.min(byTime, byLoad)
       shown += (goal - shown) * 0.08
       if (goal >= 1 && shown > 0.995) shown = 1
@@ -136,7 +136,7 @@ export default function Preloader() {
               }}
               animate={
                 settling
-                  ? { x: 0, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0%)', borderRadius: target.onHero ? 10 : 0 }
+                  ? { x: 0, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0%)', borderRadius: 0 }
                   : { clipPath: 'inset(0% 0% 0% 0%)' }
               }
               transition={settling ? { duration: 1.2, ease: [0.76, 0, 0.24, 1] } : { duration: 1, ease }}

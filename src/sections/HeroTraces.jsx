@@ -10,7 +10,6 @@ import {
   useSpring,
   useTransform,
 } from 'framer-motion'
-import Embers from '../components/Embers'
 import { ease } from '../components/Reveal'
 import { useIntroDone } from '../intro'
 import { HERO_SLIDES } from '../data/hero'
@@ -54,7 +53,7 @@ export default function HeroTraces() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '16%'])
   const titleY = useTransform(scrollYProgress, [0, 1], ['0%', '-40%'])
-  const spacing = useTransform(scrollYProgress, [0, 1], ['-0.035em', '0.1em'])
+  const spacing = useTransform(scrollYProgress, [0, 1], ['-0.045em', '0.04em'])
   const titleFade = useTransform(scrollYProgress, [0, 0.8], [1, 0.1])
   const uiY = useTransform(scrollYProgress, [0, 1], ['0%', '-35%'])
 
@@ -147,7 +146,7 @@ export default function HeroTraces() {
       </motion.p>
       </div>
 
-      <div className="hero__media" data-cursor="Scroll" onMouseMove={onMove} onMouseLeave={onLeave}>
+      <div className="hero__media" onMouseMove={onMove} onMouseLeave={onLeave}>
         <motion.div className="hero__stage" style={reduce ? undefined : { y: imgY }}>
           <motion.div className="hero__parallax" style={{ x: sx, y: sy }}>
             {prev !== null && (
@@ -175,7 +174,6 @@ export default function HeroTraces() {
 
         <span className="grain" aria-hidden="true" />
         <span className="hero__vignette" aria-hidden="true" />
-        <Embers />
 
         <motion.div className="hero__ui" style={{ y: uiY }}>
           <motion.div

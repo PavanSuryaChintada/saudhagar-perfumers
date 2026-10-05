@@ -47,7 +47,6 @@ export default function ScentArchive() {
                 <Link
                   to={r.to}
                   className={`arc__row ${active === i ? 'is-active' : ''}`}
-                  data-cursor="Shop"
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
                 >

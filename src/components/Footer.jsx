@@ -61,8 +61,8 @@ export default function Footer() {
 
         <div className="ft__last">
           <p className="ft__title">Last trace</p>
-          <Link to="/#finder" className="pill pill--light pill--block">
-            Find your scent
+          <Link to="/#archive" className="pill pill--light pill--block">
+            Scent archive
           </Link>
           <Link to="/shop" className="pill pill--light pill--block">
             Collection index

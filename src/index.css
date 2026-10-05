@@ -2262,3 +2262,18 @@ fieldset {
   background: var(--gold);
   transform-origin: 0 50%;
 }
+
+/* ---------- route curtain ---------- */
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 140;
+  display: grid;
+  place-items: center;
+  background: var(--gold);
+  pointer-events: none;
+}
+.curtain .wordmark {
+  color: #000;
+  font-size: 18px;
+}

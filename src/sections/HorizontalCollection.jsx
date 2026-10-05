@@ -36,7 +36,7 @@ export default function HorizontalCollection() {
       <div className="hcol__sticky">
         <div className="hcol__head container">
           <h2 className="stitle">The collection</h2>
-          <p>Scroll to walk the shelf</p>
+          <p>Keep scrolling</p>
         </div>
         <motion.ol className="hcol__track" ref={track} style={{ x }}>
           <li className="hcol__intro">
@@ -44,7 +44,7 @@ export default function HorizontalCollection() {
           </li>
           {PICKS.map((p, i) => (
             <li key={p.slug} className="hcol__item">
-              <Link to={`/product/${p.slug}`} className="hcol__card" data-cursor="View">
+              <Link to={`/product/${p.slug}`} className="hcol__card">
                 <span className="hcol__img">
                   <img src={p.image} alt="" loading="lazy" />
                 </span>

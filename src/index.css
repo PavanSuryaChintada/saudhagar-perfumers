@@ -2445,3 +2445,83 @@ fieldset {
   background: var(--gold);
   transform-origin: left;
 }
+
+/* ---------- stacked family cards ---------- */
+.fstack__slot {
+  position: sticky;
+  height: min(72svh, 560px);
+  margin-bottom: 28svh;
+}
+.fstack__slot:last-child {
+  margin-bottom: 0;
+}
+.fstack__card {
+  position: relative;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  transform-origin: 50% 0;
+  box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.55);
+}
+.fstack__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(80% 90% at 100% 100%, var(--tint), transparent 70%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+.fstack__img {
+  position: relative;
+  overflow: hidden;
+}
+.fstack__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--grade);
+}
+.fstack__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 12px;
+  padding: clamp(20px, 3vw, 44px);
+}
+.fstack__num {
+  margin-bottom: auto;
+  font-size: 0.8rem;
+  color: var(--gold-deep);
+}
+.fstack__body .display {
+  font-size: clamp(2.2rem, 5vw, 4.8rem);
+}
+.fstack__blurb {
+  font-size: 1.05rem;
+}
+.fstack__names {
+  font-size: 0.8rem;
+  color: var(--mute);
+  margin-bottom: 8px;
+}
+.fstack__shade {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  pointer-events: none;
+}
+@media (max-width: 900px) {
+  .fstack__card {
+    grid-template-columns: 1fr;
+    grid-template-rows: 45% 1fr;
+  }
+  .fstack__slot {
+    height: 78svh;
+  }
+}

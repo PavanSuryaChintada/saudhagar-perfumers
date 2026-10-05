@@ -6,6 +6,7 @@ import About from '../sections/About'
 import Philosophy from '../sections/Philosophy'
 import MaterialMemory from '../sections/MaterialMemory'
 import Ritual from '../sections/Ritual'
+import FamilyStack from '../sections/FamilyStack'
 import NotesJourney from '../sections/NotesJourney'
 import ScentArchive from '../sections/ScentArchive'
 import Finder from '../sections/Finder'
@@ -30,6 +31,7 @@ export default function Home() {
       <About />
       <Philosophy />
       <MaterialMemory />
+      <FamilyStack />
       <Ritual />
       <NotesJourney />
       <ProductRow title="Bestsellers" products={BESTSELLERS} link="/shop" linkText="View catalog" />

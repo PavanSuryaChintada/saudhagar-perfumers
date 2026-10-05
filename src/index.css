@@ -362,51 +362,6 @@ fieldset {
 }
 
 /* ==========================================================================
-   Preloader (kept)
-   ========================================================================== */
-.preloader {
-  position: fixed;
-  inset: 0;
-  z-index: 150;
-  display: grid;
-  place-items: center;
-  background: #000;
-}
-.preloader__mark {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: var(--gold);
-  font-family: var(--display);
-}
-.preloader__line {
-  display: flex;
-  overflow: hidden;
-  font-size: clamp(2.6rem, 9vw, 5.6rem);
-  line-height: 1.05;
-}
-.preloader__line span {
-  display: inline-block;
-}
-.preloader__sub {
-  font-size: clamp(1.3rem, 4.2vw, 2.7rem);
-  margin-top: 4px;
-}
-.preloader__rule {
-  display: block;
-  width: min(80vw, 420px);
-  height: 1px;
-  background: var(--gold);
-  margin: 18px 0 14px;
-}
-.preloader__tag {
-  font-family: var(--sans);
-  font-size: clamp(0.7rem, 1.6vw, 0.95rem);
-  letter-spacing: 0.32em;
-  color: var(--gold-deep);
-}
-
-/* ==========================================================================
    Header — SYLVEN: lowercase text links either side of a centred mark
    ========================================================================== */
 .hd {
@@ -501,61 +456,6 @@ fieldset {
 .mmenu__foot {
   color: var(--mute);
   font-size: 0.85rem;
-}
-
-/* ==========================================================================
-   Hero — "TRACES OF OUD" over a full-width photograph with inset card
-   ========================================================================== */
-.hero {
-  padding-top: calc(var(--hd) + 8px);
-}
-.hero__title {
-  display: flex;
-  justify-content: space-between;
-  font-size: clamp(2.7rem, 10.4vw, 10.6rem);
-  white-space: nowrap;
-  margin-bottom: clamp(10px, 1.4vw, 20px);
-}
-.hero__media {
-  position: relative;
-  height: clamp(420px, 62vh, 680px);
-  border-radius: var(--r);
-  overflow: hidden;
-  background: var(--panel);
-}
-.hero__media > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: var(--grade);
-}
-.hero__card {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  width: min(400px, calc(100% - 28px));
-  padding: 16px 16px 14px;
-  border-radius: var(--r);
-  background: rgba(10, 9, 7, 0.92);
-  border: 1px solid var(--line);
-}
-.hero__card h2 {
-  font-family: var(--sans);
-  font-weight: 300;
-  font-size: 1.75rem;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  color: var(--ivory);
-}
-.hero__card p {
-  font-size: 0.82rem;
-  color: var(--mute);
-  max-width: 30ch;
-  margin: 10px 0 14px;
-  line-height: 1.45;
-}
-.hero__card .pill {
-  min-height: 34px;
 }
 
 /* ==========================================================================
@@ -2074,27 +1974,7 @@ fieldset {
   .hd__menu {
     display: block;
   }
-  .hero__title {
-    flex-wrap: wrap;
-    justify-content: center;
-    white-space: normal;
-    text-align: center;
-    font-size: clamp(3rem, 17vw, 7rem);
-  }
-  .hero__media {
-    height: 70vh;
-  }
-  .hero__card {
-    top: auto;
-    bottom: 14px;
-    left: 50%;
-    translate: -50% 0;
-    text-align: center;
-  }
-  .hero__card p {
-    margin-inline: auto;
-  }
-  .prow__grid {
+    .prow__grid {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -2683,9 +2563,7 @@ fieldset {
   pointer-events: none;
   background: radial-gradient(120% 90% at 60% 40%, transparent 45%, rgba(0, 0, 0, 0.55));
 }
-.hero__media > img.hero__drift {
-  animation: drift 22s ease-in-out infinite alternate;
-}
+
 @keyframes drift {
   from { object-position: 40% 50%; }
   to { object-position: 60% 45%; }
@@ -2736,4 +2614,289 @@ fieldset {
 }
 .page-loading {
   min-height: 100svh;
+}
+
+/* ==========================================================================
+   Preloader — bottle fills with real load progress, then the hero photo
+   blooms out of the dark and settles into the hero frame
+   ========================================================================== */
+.pl {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  pointer-events: none;
+}
+.pl__bg {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  pointer-events: auto;
+}
+.pl__photo {
+  position: fixed;
+  overflow: hidden;
+  transform-origin: 50% 50%;
+  will-change: transform, clip-path;
+}
+.pl__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--grade);
+}
+.pl__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.pl__bottle {
+  width: clamp(110px, 11vw, 150px);
+  overflow: visible;
+}
+.pl__count {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  line-height: 1;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+.pl__stage {
+  height: 1.4em;
+  overflow: hidden;
+  font-size: 0.8rem;
+  color: var(--mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.pl__stage span {
+  display: block;
+}
+.pl__foot {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 26px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+.pl__bar {
+  height: 1px;
+  background: var(--line);
+}
+.pl__bar span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: left;
+}
+
+/* ==========================================================================
+   Hero — "TRACES OF <word>" over a four-scent slideshow
+   ========================================================================== */
+.hero {
+  padding-top: calc(var(--hd) + 6px);
+}
+.hero__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: clamp(10px, 1.2vw, 18px);
+}
+.hero__title {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.28em;
+  font-size: clamp(2.4rem, 7.7vw, 9rem);
+  white-space: nowrap;
+}
+.hero__lead,
+.hero__word,
+.hero__wordin {
+  display: inline-flex;
+}
+.hero__media {
+  position: relative;
+  height: clamp(440px, calc(100svh - var(--hd) - 7.7vw - 36px), 820px);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--panel);
+  isolation: isolate;
+}
+.hero__stage,
+.hero__parallax,
+.hero__slide {
+  position: absolute;
+  inset: 0;
+}
+.hero__parallax {
+  inset: -24px;
+}
+.hero__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--grade);
+  will-change: transform;
+}
+.embers {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.hero__ui {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero__ui > * {
+  pointer-events: auto;
+}
+.hero__card {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: min(400px, calc(100% - 28px));
+  padding: 16px 16px 14px;
+  border-radius: var(--r);
+  background: rgba(10, 9, 7, 0.9);
+  border: 1px solid var(--line);
+}
+.hero__card h2 {
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ivory);
+}
+.hero__card p {
+  font-size: 0.82rem;
+  color: var(--mute);
+  max-width: 34ch;
+  min-height: 2.9em;
+  margin: 10px 0 14px;
+  line-height: 1.45;
+}
+.hero__card .pill {
+  min-height: 34px;
+}
+.hero__index {
+  display: flex;
+  padding-bottom: 0.4vw;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--display);
+  font-weight: 600;
+  color: var(--gold);
+}
+.hero__index .hero__mask {
+  font-size: clamp(2.6rem, 5vw, 4.6rem);
+  line-height: 1;
+}
+.hero__of {
+  font-size: 0.9rem;
+}
+.hero__nav {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.hero__tab {
+  display: grid;
+  gap: 8px;
+  text-align: left;
+  padding: 10px 2px 4px;
+  color: rgba(241, 234, 219, 0.6);
+  transition: color 0.4s;
+}
+.hero__tab:hover,
+.hero__tab.is-active {
+  color: var(--ivory);
+}
+.hero__tabtext {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.7);
+}
+.hero__tabtext span {
+  color: var(--gold);
+  margin-right: 6px;
+}
+.hero__line {
+  height: 1px;
+  background: rgba(241, 234, 219, 0.3);
+  overflow: hidden;
+}
+.hero__line span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: left;
+}
+.hero__vignette {
+  background: radial-gradient(120% 90% at 60% 40%, transparent 40%, rgba(0, 0, 0, 0.6)),
+    linear-gradient(transparent 65%, rgba(0, 0, 0, 0.55));
+}
+@media (max-width: 900px) {
+  .hero__head {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  .hero__index {
+    display: none;
+  }
+  .hero__title {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    font-size: clamp(2.6rem, 14vw, 6rem);
+    line-height: 0.9;
+  }
+  .hero__media {
+    height: 72svh;
+  }
+  .hero__card {
+    top: auto;
+    bottom: 64px;
+  }
+  .hero__card p {
+    min-height: 0;
+  }
+  .hero__tabtext {
+    font-size: 0.7rem;
+  }
+  .hero__nav {
+    gap: 8px;
+  }
+}
+@media (max-width: 560px) {
+  .hero__tabtext {
+    font-size: 0;
+  }
+  .hero__tabtext span {
+    font-size: 0.72rem;
+  }
+}
+.hero__index .hero__mask {
+  position: relative;
 }

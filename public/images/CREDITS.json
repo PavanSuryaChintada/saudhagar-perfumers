@@ -148,5 +148,20 @@
   "file": "archive-vetiver.jpg",
   "source": "https://images.unsplash.com/photo-1749191745108-c636380b2898",
   "alt": "Wooden flask with its cap beside it"
+ },
+ {
+  "file": "hero-saffron.jpg",
+  "source": "https://images.unsplash.com/photo-1613549026674-2b6c58226395",
+  "alt": "red wine in clear glass"
+ },
+ {
+  "file": "hero-attar.jpg",
+  "source": "https://images.unsplash.com/photo-1654524438960-ab0a67b4e22f",
+  "alt": "two bottles of perfume sitting on a red cloth"
+ },
+ {
+  "file": "hero-amber.jpg",
+  "source": "https://images.unsplash.com/photo-1535683577427-740aaac4ec25",
+  "alt": "four clear glass cruets"
  }
 ]

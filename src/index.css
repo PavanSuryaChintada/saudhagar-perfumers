@@ -2658,3 +2658,41 @@ fieldset {
 .sbar .pill {
   min-height: 40px;
 }
+
+/* ---------- hero atmosphere: film grain, vignette, slow drift ---------- */
+.grain {
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.9s steps(6) infinite;
+  mix-blend-mode: overlay;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-6%, 4%); }
+  40% { transform: translate(5%, -7%); }
+  60% { transform: translate(-3%, 8%); }
+  80% { transform: translate(7%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+.hero__vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 60% 40%, transparent 45%, rgba(0, 0, 0, 0.55));
+}
+.hero__media > img.hero__drift {
+  animation: drift 22s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  from { object-position: 40% 50%; }
+  to { object-position: 60% 45%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .grain,
+  .hero__media > img.hero__drift {
+    animation: none;
+  }
+}

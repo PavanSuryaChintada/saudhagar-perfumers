@@ -14,10 +14,13 @@ export default function HeroTraces() {
   const imgY = useTransform(scrollYProgress, [0, 1], ['0%', '18%'])
   const imgScale = useTransform(scrollYProgress, [0, 1], [1.02, 1.12])
   const titleY = useTransform(scrollYProgress, [0, 1], ['0%', '-30%'])
+  const spacing = useTransform(scrollYProgress, [0, 1], ['0em', '0.12em'])
+  const titleFade = useTransform(scrollYProgress, [0, 0.8], [1, 0.15])
+  const cardY = useTransform(scrollYProgress, [0, 1], ['0%', '-40%'])
 
   return (
     <section className="hero container" ref={ref}>
-      <motion.h1 className="display hero__title" style={{ y: titleY }} aria-label={TITLE}>
+      <motion.h1 className="display hero__title" style={{ y: titleY, letterSpacing: spacing, opacity: titleFade }} aria-label={TITLE}>
         {TITLE.split('').map((ch, i) => (
           <span className="hero__mask" key={i} aria-hidden="true">
             <motion.span
@@ -41,10 +44,14 @@ export default function HeroTraces() {
         <motion.img
           src="/images/hero-oud-smoke.jpg"
           alt="Smoke rising from a sliver of burning oud wood"
+          className="hero__drift"
           style={reduce ? undefined : { y: imgY, scale: imgScale }}
         />
+        <span className="grain" aria-hidden="true" />
+        <span className="hero__vignette" aria-hidden="true" />
         <motion.div
           className="hero__card"
+          style={{ y: cardY }}
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: d + 1.2, ease }}

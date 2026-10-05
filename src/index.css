@@ -6,16 +6,21 @@
    wordmark gold, antique-gold tagline, Cinzel + Poppins.
    ========================================================================== */
 :root {
-  --bg: #000;
-  --panel: #110f0b;
-  --panel-2: #1a160f;
+  /* layered blacks: each section sits on its own tone */
+  --ink: #090909;
+  --onyx: #0f0f0e;
+  --graphite: #161615;
+  --charcoal: #1e1d1b;
+  --bg: var(--ink);
+  --panel: var(--graphite);
+  --panel-2: var(--charcoal);
   --gold: #f7d98a;
   --gold-deep: #c9a15a;
   --gold-dim: #8a6a2c;
-  --ivory: #f1eadb;
-  --mute: #9c9382;
-  --line: rgba(247, 217, 138, 0.2);
-  --line-strong: rgba(247, 217, 138, 0.45);
+  --ivory: #ece6da;
+  --mute: #8b867d;
+  --line: rgba(236, 230, 218, 0.1);
+  --line-strong: rgba(236, 230, 218, 0.24);
 
   --brand: 'Cinzel', 'Trajan Pro', Georgia, serif;
   --display: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
@@ -229,7 +234,7 @@ fieldset {
   width: 100%;
 }
 .pill--light {
-  background: #000;
+  background: var(--ink);
   color: var(--gold);
 }
 .pill--light::before {
@@ -373,7 +378,8 @@ fieldset {
   border-bottom: 1px solid transparent;
 }
 .hd--solid {
-  background: rgba(0, 0, 0, 0.94);
+  background: rgba(9, 9, 9, 0.88);
+  backdrop-filter: blur(10px);
   border-bottom-color: var(--line);
 }
 .hd__inner {
@@ -435,7 +441,7 @@ fieldset {
   position: fixed;
   inset: 0;
   z-index: 55;
-  background: #000;
+  background: var(--ink);
   padding: calc(var(--hd) + 40px) var(--gutter) 40px;
   display: flex;
   flex-direction: column;
@@ -1489,7 +1495,7 @@ fieldset {
   position: fixed;
   inset: 0;
   z-index: 95;
-  background: rgba(0, 0, 0, 0.97);
+  background: rgba(9, 9, 9, 0.97);
   overflow-y: auto;
 }
 .search__inner {
@@ -1601,7 +1607,7 @@ fieldset {
   flex-shrink: 0;
   padding: 7px 16px;
   border-radius: 0;
-  background: #000;
+  background: var(--ink);
   color: var(--gold);
   font-size: 0.78rem;
 }
@@ -1887,7 +1893,7 @@ fieldset {
   width: min(560px, calc(100vw - 24px));
   padding: 8px 8px 8px 8px;
   border-radius: 0;
-  background: rgba(17, 15, 11, 0.96);
+  background: rgba(22, 22, 21, 0.96);
   border: 1px solid var(--line-strong);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
 }
@@ -1967,7 +1973,7 @@ fieldset {
 .pl__bg {
   position: absolute;
   inset: 0;
-  background: #000;
+  background: var(--ink);
   pointer-events: auto;
 }
 .pl__photo {
@@ -2103,7 +2109,7 @@ fieldset {
   width: min(400px, calc(100% - 28px));
   padding: 16px 16px 14px;
   border-radius: 0;
-  background: rgba(10, 9, 7, 0.9);
+  background: rgba(15, 15, 14, 0.92);
   border: 1px solid var(--line);
 }
 .hero__card h2 {
@@ -2312,83 +2318,352 @@ fieldset {
   margin-left: 0.18em;
 }
 
-/* ---------- stacked family cards ---------- */
-.fstack__slot {
-  position: sticky;
-  height: min(72svh, 560px);
-  margin-bottom: 28svh;
-}
-.fstack__slot:last-child {
-  margin-bottom: 0;
-}
-.fstack__card {
+/* ---------- pinned horizontal collection ---------- */
+.hcol {
   position: relative;
-  height: 100%;
+}
+.hcol__sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+}
+.hcol__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.hcol__head p {
+  font-size: 0.8rem;
+  color: var(--mute);
+}
+.hcol__track {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  padding-inline: var(--gutter);
+  will-change: transform;
+}
+.hcol__intro {
+  width: min(34vw, 420px);
+  display: flex;
+  align-items: flex-end;
+}
+.hcol__intro .display {
+  font-size: clamp(2.4rem, 4.4vw, 4.6rem);
+}
+.hcol__item {
+  width: clamp(240px, 26vw, 380px);
+}
+.hcol__card {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  gap: 4px;
+}
+.hcol__img {
+  display: block;
+  aspect-ratio: 3 / 4;
+  max-height: 58svh;
   border-radius: 0;
   overflow: hidden;
   background: var(--panel);
-  border: 1px solid var(--line);
-  transform-origin: 50% 0;
-  box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.55);
+  margin-bottom: 8px;
 }
-.fstack__card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(80% 90% at 100% 100%, var(--tint), transparent 70%);
-  opacity: 0.6;
-  pointer-events: none;
-}
-.fstack__img {
-  position: relative;
-  overflow: hidden;
-}
-.fstack__img img {
+.hcol__img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: var(--grade);
+  transition: transform 1.2s var(--ease), filter 0.8s;
 }
-.fstack__body {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: 12px;
-  padding: clamp(20px, 3vw, 44px);
+.hcol__card:hover img {
+  transform: scale(1.06);
+  filter: none;
 }
-.fstack__num {
-  margin-bottom: auto;
-  font-size: 0.8rem;
+.hcol__num {
+  font-size: 0.75rem;
   color: var(--gold-deep);
 }
-.fstack__body .display {
-  font-size: clamp(2.2rem, 5vw, 4.8rem);
+.hcol__name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.7rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--gold);
 }
-.fstack__blurb {
-  font-size: 1.05rem;
-}
-.fstack__names {
-  font-size: 0.8rem;
+.hcol__meta {
+  font-size: 0.78rem;
   color: var(--mute);
-  margin-bottom: 8px;
 }
-.fstack__shade {
+.hcol__bar {
+  height: 1px;
+}
+.hcol__bar span {
+  display: block;
+  height: 1px;
+  background: var(--gold);
+  transform-origin: left;
+}
+
+
+/* ==========================================================================
+   Tonal rhythm: sections alternate between the black variants
+   ========================================================================== */
+.sig,
+.arc,
+.phil,
+.hcol {
+  background: var(--onyx);
+}
+.edit,
+.mat {
+  background: var(--graphite);
+}
+.rit {
+  background: var(--charcoal);
+  border-color: transparent;
+}
+.sig,
+.about,
+.arc,
+.res,
+.mat,
+.phil {
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- scroll-driven word bands ---------- */
+.swords {
+  overflow: hidden;
+  padding-block: clamp(28px, 4vw, 56px);
+  background: var(--ink);
+  border-block: 1px solid var(--line);
+}
+.swords__row {
+  font-family: var(--numeral);
+  font-size: clamp(3.4rem, 11vw, 11rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ivory);
+  will-change: transform;
+}
+.swords__row--outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(236, 230, 218, 0.4);
+}
+.swords--gold {
+  background: var(--gold);
+  border: 0;
+}
+.swords--gold .swords__row {
+  color: var(--ink);
+}
+.swords--gold .swords__row--outline {
+  color: transparent;
+  -webkit-text-stroke-color: var(--ink);
+}
+
+/* ---------- full-screen family panels ---------- */
+.fps {
+  position: relative;
+}
+.fp__slot {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+}
+.fp {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 44%);
+  padding: calc(var(--hd) + 24px) var(--gutter) var(--gutter);
+  gap: var(--gutter);
+  transform-origin: 50% 0;
+  --fg: var(--ivory);
+  --fg-mute: var(--mute);
+  color: var(--fg);
+}
+.fp--onyx {
+  background: var(--onyx);
+}
+.fp--graphite {
+  background: var(--charcoal);
+}
+.fp--gold {
+  background: var(--gold);
+  --fg: var(--ink);
+  --fg-mute: rgba(9, 9, 9, 0.62);
+}
+.fp--ivory {
+  background: var(--ivory);
+  --fg: var(--ink);
+  --fg-mute: rgba(9, 9, 9, 0.58);
+}
+.fp__meta {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 380px;
+}
+.fp__kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.fp__kicker span:first-child {
+  font-family: var(--numeral);
+  font-size: 1.6rem;
+  letter-spacing: 0;
+}
+.fp__rule {
+  width: 48px;
+  height: 1px;
+  background: currentColor;
+}
+.fp__blurb {
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+.fp__names {
+  font-size: 0.78rem;
+  color: var(--fg-mute);
+}
+.fp--gold .fp__cta,
+.fp--ivory .fp__cta {
+  background: var(--ink);
+  color: var(--ivory);
+}
+.fp__img {
+  position: relative;
+  overflow: hidden;
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+.fp__img img {
+  position: absolute;
+  left: 0;
+  top: -14%;
+  width: 100%;
+  height: 128%;
+  object-fit: cover;
+  filter: var(--grade);
+}
+.fp__word {
+  position: absolute;
+  left: 0;
+  bottom: -0.08em;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--numeral);
+  font-weight: 400;
+  font-size: clamp(7rem, 26vw, 26rem);
+  line-height: 0.85;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--fg);
+  pointer-events: none;
+}
+.fp__shade {
   position: absolute;
   inset: 0;
-  background: #000;
+  z-index: 3;
+  background: var(--ink);
   pointer-events: none;
 }
 @media (max-width: 900px) {
-  .fstack__card {
+  .fp {
     grid-template-columns: 1fr;
-    grid-template-rows: 45% 1fr;
+    grid-template-rows: auto 1fr;
   }
-  .fstack__slot {
-    height: 78svh;
+  .fp__img {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .fp__word {
+    font-size: 38vw;
   }
 }
 
+/* ---------- the edit: sticky title, scrolling products ---------- */
+.edit {
+  padding-block: clamp(64px, 8vw, 120px);
+}
+.edit__inner {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) 1.6fr;
+  gap: clamp(24px, 4vw, 64px);
+}
+.edit__sticky {
+  position: sticky;
+  top: calc(var(--hd) + 24px);
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+}
+.edit__word {
+  display: grid;
+  margin: 0;
+  font-family: var(--numeral);
+  font-weight: 400;
+  font-size: clamp(4.4rem, 10vw, 10rem);
+  line-height: 0.86;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.edit__word span:last-child {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gold);
+}
+.edit__note {
+  max-width: 34ch;
+  font-size: 0.88rem;
+  color: var(--mute);
+}
+.edit__bar {
+  width: 1px;
+  height: 90px;
+  background: var(--line-strong);
+}
+.edit__bar span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+  transform-origin: top;
+}
+.edit__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 14px;
+}
+.edit__cell--low {
+  margin-top: 90px;
+}
+@media (max-width: 900px) {
+  .edit__inner {
+    grid-template-columns: 1fr;
+  }
+  .edit__sticky {
+    position: static;
+  }
+  .edit__bar {
+    display: none;
+  }
+  .edit__cell--low {
+    margin-top: 40px;
+  }
+}

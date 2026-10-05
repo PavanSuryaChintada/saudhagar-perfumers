@@ -18,6 +18,7 @@ import Product from './pages/Product'
 import NotFound from './pages/NotFound'
 import Bag from './pages/Bag'
 import Checkout from './pages/Checkout'
+import Wishlist from './pages/Wishlist'
 
 function Page({ children }) {
   return (
@@ -128,6 +129,14 @@ export default function App() {
             element={
               <Page>
                 <Checkout />
+              </Page>
+            }
+          />
+          <Route
+            path="/wishlist"
+            element={
+              <Page>
+                <Wishlist />
               </Page>
             }
           />

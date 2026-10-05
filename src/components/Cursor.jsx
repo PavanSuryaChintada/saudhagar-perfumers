@@ -25,7 +25,8 @@ export default function Cursor() {
       y.set(e.clientY)
       setVisible(true)
       const t = e.target instanceof Element ? e.target : null
-      const tagged = t?.closest('[data-cursor]')
+      const control = t?.closest('button')
+      const tagged = control ? null : t?.closest('[data-cursor]')
       setLabel(tagged ? tagged.getAttribute('data-cursor') : null)
       setHoverLink(!tagged && !!t?.closest('a, button, select, input, label'))
     }

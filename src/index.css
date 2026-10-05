@@ -2525,3 +2525,57 @@ fieldset {
     height: 78svh;
   }
 }
+
+/* ---------- wishlist heart ---------- */
+.wish {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--ivory);
+  transition: color 0.3s, background 0.3s;
+}
+.wish svg {
+  width: 18px;
+  height: 18px;
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  transition: fill 0.3s;
+}
+.wish:hover {
+  color: var(--gold);
+}
+.wish.is-on {
+  color: var(--gold);
+}
+.wish.is-on svg {
+  fill: var(--gold);
+}
+.pc__wish {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.4s, transform 0.4s var(--ease), color 0.3s;
+}
+.pc:hover .pc__wish,
+.pc__wish.is-on,
+.pc__wish:focus-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (hover: none) {
+  .pc__wish {
+    opacity: 1;
+    transform: none;
+  }
+}
+.wish--round {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+}

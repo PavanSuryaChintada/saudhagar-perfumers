@@ -6,6 +6,7 @@ import ProductRow from '../sections/ProductRow'
 import { useCart } from '../context/CartContext'
 import { PRODUCTS, findProduct, formatPrice } from '../data/products'
 import NotFound from './NotFound'
+import WishButton from '../components/WishButton'
 
 const BEST_FOR = {
   woody: 'Best for evenings, cool air and quiet interiors.',
@@ -119,6 +120,7 @@ function ProductView({ p }) {
               <button className="pill" onClick={() => add(p.slug, ml, qty)}>
                 Add to bag
               </button>
+              <WishButton slug={p.slug} name={p.name} className="wish--round" />
             </div>
             <p className="pdp__assure">
               Rated {p.rating} from {p.reviews} reviews. Free shipping over ₹2,999.

@@ -14,7 +14,7 @@ const NAV = [
 ]
 
 export default function Header({ onSearch }) {
-  const { count } = useCart()
+  const { count, wished } = useCart()
   const { scrollY } = useScroll()
   const [hidden, setHidden] = useState(false)
   const [solid, setSolid] = useState(false)
@@ -72,6 +72,10 @@ export default function Header({ onSearch }) {
             <Link to="/shop" className="hd__link hd__wide">
               catalog
             </Link>
+            <Link to="/wishlist" className="hd__link hd__wide" aria-label={`Wishlist, ${wished.length} saved`}>
+              wishlist
+              {wished.length > 0 && <sup className="hd__count">{wished.length}</sup>}
+            </Link>
             <Link to="/bag" className="hd__link" aria-label={`Bag, ${count} items`}>
               bag
               <AnimatePresence>
@@ -102,7 +106,7 @@ export default function Header({ onSearch }) {
             transition={{ duration: 0.7, ease }}
           >
             <nav aria-label="Mobile">
-              {[...NAV, { to: '/bag', label: 'bag' }].map((n, i) => (
+              {[...NAV, { to: '/wishlist', label: 'wishlist' }, { to: '/bag', label: 'bag' }].map((n, i) => (
                 <motion.div
                   key={n.label}
                   initial={{ y: 40, opacity: 0 }}

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useCart } from '../context/CartContext'
 import { formatPrice } from '../data/products'
 import { ease } from './Reveal'
+import WishButton from './WishButton'
 
 // SYLVEN-style catalogue tile: photograph, "TYPE — NAME", price, quick add.
 export default function ProductCard({ product: p, index = 0, large = false, label = 'type' }) {
@@ -21,6 +22,7 @@ export default function ProductCard({ product: p, index = 0, large = false, labe
       <Link to={`/product/${p.slug}`} className="pc__media" data-cursor="View" aria-label={`${p.name}, ${p.type}`}>
         <img src={p.image} alt="" loading="lazy" />
         {p.isNew && <span className="pc__flag">New</span>}
+        <WishButton slug={p.slug} name={p.name} className="pc__wish" />
         <span className="pc__notes" aria-hidden="true">
           {[...p.notes.top, ...p.notes.heart].slice(0, 3).join(' · ')}
         </span>

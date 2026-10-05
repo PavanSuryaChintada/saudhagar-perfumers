@@ -3,6 +3,7 @@ import { findProduct } from '../data/products'
 
 const CartContext = createContext(null)
 const STORAGE_KEY = 'saudagar-bag'
+const WISH_KEY = 'saudagar-wishlist'
 export const FREE_SHIPPING_AT = 2999
 
 const keyOf = (slug, ml) => `${slug}:${ml}`
@@ -42,6 +43,36 @@ export function CartProvider({ children }) {
   const [lines, dispatch] = useReducer(reducer, undefined, load)
   const [open, setOpen] = useState(false)
   const [toast, setToast] = useState(null)
+  const [wished, setWished] = useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(WISH_KEY) ?? '[]')
+      return Array.isArray(saved) ? saved.filter((s) => findProduct(s)) : []
+    } catch {
+      return []
+    }
+  })
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(WISH_KEY, JSON.stringify(wished))
+    } catch {
+      /* storage unavailable */
+    }
+  }, [wished])
+
+  const toggleWish = useCallback(
+    (slug) => {
+      const has = wished.includes(slug)
+      const name = findProduct(slug).name
+      setWished(has ? wished.filter((s) => s !== slug) : [...wished, slug])
+      setToast(
+        has
+          ? { text: `${name} removed from your wishlist`, id: Date.now() }
+          : { text: `${name} saved to your wishlist`, link: '/wishlist', linkText: 'View wishlist', id: Date.now() },
+      )
+    },
+    [wished],
+  )
 
   useEffect(() => {
     try {
@@ -82,8 +113,11 @@ export function CartProvider({ children }) {
       remove: (key) => dispatch({ type: 'remove', key }),
       toast,
       notify: setToast,
+      wished,
+      isWished: (slug) => wished.includes(slug),
+      toggleWish,
     }
-  }, [lines, open, add, toast])
+  }, [lines, open, add, toast, wished, toggleWish])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

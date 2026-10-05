@@ -33,6 +33,7 @@ export default function HeroTraces() {
 
       <motion.div
         className="hero__media"
+        data-cursor="Scroll"
         initial={reduce ? false : { clipPath: 'inset(0% 0% 100% 0% round 10px)' }}
         animate={{ clipPath: 'inset(0% 0% 0% 0% round 10px)' }}
         transition={{ duration: 1.5, delay: d + 0.35, ease }}

@@ -2329,3 +2329,27 @@ fieldset {
   color: transparent;
   -webkit-text-stroke-color: #000;
 }
+
+/* ---------- cursor ---------- */
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--gold);
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  mix-blend-mode: normal;
+}
+.cursor--ring {
+  background: transparent;
+  border: 1px solid var(--gold);
+}
+.cursor span {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #000;
+}

@@ -8,6 +8,7 @@ import Preloader from './components/Preloader'
 import Toast from './components/Toast'
 import ScrollProgress from './components/ScrollProgress'
 import Wordmark from './components/Wordmark'
+import Cursor from './components/Cursor'
 import { ease } from './components/Reveal'
 import useLenis, { getLenis, scrollToTop } from './hooks/useLenis'
 import Home from './pages/Home'
@@ -141,6 +142,7 @@ export default function App() {
       <Footer />
       <SearchOverlay open={search} onClose={closeSearch} />
       <Toast />
+      <Cursor />
     </MotionConfig>
   )
 }
